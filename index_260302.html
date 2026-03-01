@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaepil Han | Economist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2d3f5c;
+    --teal: #5b9ea0;
+    --teal-light: #7ec8c8;
+    --gold: #e8b4a0;
+    --cream: #f5f7fa;
+    --white: #ffffff;
+    --gray: #8a96a8;
+    --light-gray: #dde4ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(247, 244, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+
+  .hero-left {
+    background: linear-gradient(140deg, #3a5070 0%, #2d3f5c 60%, #3a6068 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(126,200,200,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,180,160,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { position: relative; z-index: 1; }
+
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--teal-light);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.8rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    border: 1px solid rgba(26,122,110,0.5);
+    color: var(--teal-light);
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+  }
+
+  .btn-primary:hover { background: var(--teal-light); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(255,255,255,0.6);
+    color: white;
+  }
+
+  /* HERO RIGHT — photo placeholder */
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 300px;
+    height: 380px;
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px;
+    right: -16px; bottom: -16px;
+    border: 2px solid var(--teal);
+    border-radius: 4px;
+    z-index: 0;
+  }
+
+  .photo-placeholder {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #dde8f0 0%, #c8d8e8 100%);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(45,63,92,0.45);
+    font-size: 0.8rem;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .photo-placeholder svg { opacity: 0.4; }
+
+  .affil-card {
+    margin-top: 2rem;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border-radius: 4px;
+    border-left: 3px solid var(--teal);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 300px;
+  }
+
+  .affil-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .affil-sub {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 100px 10%;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    color: var(--navy);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--light-gray);
+    margin-left: 1rem;
+  }
+
+  /* RESEARCH */
+  #research { background: white; }
+
+  .research-intro {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.8;
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .pub-group {
+    margin-bottom: 3.5rem;
+  }
+
+  .pub-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  .pub-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transition: background 0.15s;
+  }
+
+  .pub-item:last-child { border-bottom: none; }
+
+  .pub-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--gray);
+    min-width: 40px;
+    padding-top: 3px;
+  }
+
+  .pub-content {}
+
+  .pub-title {
+    font-size: 0.97rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .pub-title a:hover { border-color: var(--teal); color: var(--teal); }
+
+  .pub-meta {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  .pub-badges {
+    display: flex;
+    gap: 6px;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .badge-ssci { background: #dff0f0; color: #4a8f91; }
+  .badge-kci { background: #fdeee8; color: #c07060; }
+  .badge-revision { background: #fde8e8; color: #b05050; }
+  .badge-review { background: #e8eeff; color: #5060b0; }
+  .badge-wip { background: #f0f0f0; color: #888; }
+  .badge-q1 { background: #e8f5f5; color: #4a8f91; }
+
+  /* CONTACT */
+  #contact { background: linear-gradient(135deg, #3a5070 0%, #2d3f5c 100%); }
+
+  #contact h2 { color: white; }
+  #contact .section-num { color: var(--teal-light); }
+  #contact .section-line { background: rgba(255,255,255,0.1); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 800px;
+  }
+
+  .contact-item {
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+  }
+
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-value {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .contact-value a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.2s;
+  }
+
+  .contact-value a:hover { color: white; border-color: var(--teal-light); }
+
+  /* FOOTER */
+  footer {
+    background: #253450;
+    padding: 2rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-label { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-bio { animation-delay: 0.3s; }
+  .hero-tags { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 8%; min-height: calc(100vh - 64px); }
+    h1 { font-size: 2.8rem; }
+    section { padding: 70px 8%; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Jaepil Han</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-left">
+    <div class="hero-text">
+      <div class="hero-label">Economist · Chungnam National University</div>
+      <h1>Jaepil<br><em>Han</em></h1>
+      <p class="hero-bio">
+        I am an Assistant Professor in the Department of Economics at Chungnam National University. 
+        My research focuses on innovation economics, spatial econometrics, regional development, 
+        and productivity analysis. Formerly, I was an Assistant Professor at Gachon University 
+        and a Research Fellow at the Korea Development Institute (KDI).
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Spatial Econometrics</span>
+        <span class="tag">Innovation Economics</span>
+        <span class="tag">Regional Development</span>
+        <span class="tag">Productivity Analysis</span>
+        <span class="tag">Energy Policy</span>
+      </div>
+      <div class="hero-cta">
+        <a href="CV_JaepilHan.pdf" class="btn btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a href="#research" class="btn btn-outline">View Research</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <div class="photo-frame">
+        <div class="photo-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>사진을 여기에<br>넣어주세요</span>
+        </div>
+      </div>
+      <div class="affil-card">
+        <div class="affil-title">Assistant Professor</div>
+        <div class="affil-sub">Department of Economics<br>Chungnam National University<br>Daejeon, South Korea</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Research</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="research-intro">
+    My research spans spatial econometrics methodology, firm-level innovation and digital transformation, 
+    regional economic development, and energy policy. I develop econometric tools for analyzing 
+    spatially interdependent economic phenomena and apply them to policy-relevant questions.
+  </p>
+
+  <!-- R&R -->
+  <div class="pub-group">
+    <div class="pub-group-label">Revise &amp; Resubmit</div>
+
+    <div class="pub-item">
+      <div class="pub-year">2025–</div>
+      <div class="pub-content">
+        <div class="pub-title">Standing on AlphaGo's Shoulders: Breakthrough Events and the Ladder Effect in AI Innovation</div>
+        <div class="pub-meta"><em>Technological Forecasting and Social Change</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-revision">R&amp;R</span>
+          <span class="badge badge-ssci">SSCI Q1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Under Review -->
+  <div class="pub-group">
+    <div class="pub-group-label">Under Review</div>
+
+    <div class="pub-item">
+      <div class="pub-year">2025–</div>
+      <div class="pub-content">
+        <div class="pub-title">Why Pakistan Failed to Industrialize: Productivity Gaps and Resource Misallocation in Structural Transformation</div>
+        <div class="pub-meta">Under review at <em>Structural Change and Economic Dynamics</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-review">Under Review</span>
+          <span class="badge badge-ssci">SSCI Q1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2026–</div>
+      <div class="pub-content">
+        <div class="pub-title">디지털 전환의 강도와 다양성이 제조기업 성과에 미치는 이질적 효과</div>
+        <div class="pub-meta">Under review at <em>기술혁신학회지</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-review">Under Review</span>
+          <span class="badge badge-kci">KCI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2026–</div>
+      <div class="pub-content">
+        <div class="pub-title">On the Identification and Estimation of Spatially Disaggregated Economic Activity</div>
+        <div class="pub-meta">Under review at <em>Journal of Regional Science</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-review">Under Review</span>
+          <span class="badge badge-ssci">SSCI Q1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Working Papers -->
+  <div class="pub-group">
+    <div class="pub-group-label">Working Papers</div>
+
+    <div class="pub-item">
+      <div class="pub-year">2026</div>
+      <div class="pub-content">
+        <div class="pub-title">N-Dependency of Indirect Effects in Non-Geographic Spatial Econometrics: Diagnosis and a Threshold Solution</div>
+        <div class="pub-meta">Target: <em>Journal of Econometrics</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-wip">Working Paper</span>
+          <span class="badge badge-ssci">SSCI Q1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2026</div>
+      <div class="pub-content">
+        <div class="pub-title">The Impact of Energy R&amp;D Investment on Local Carbon Emissions in China: Evidence from a Spatial Panel Data Model</div>
+        <div class="pub-meta">Target: <em>Energy Policy</em></div>
+        <div class="pub-badges">
+          <span class="badge badge-wip">Working Paper</span>
+          <span class="badge badge-ssci">SSCI Q1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Published -->
+  <div class="pub-group">
+    <div class="pub-group-label">Peer-Reviewed Publications</div>
+
+    <div class="pub-item">
+      <div class="pub-year">2024</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://link.springer.com/article/10.1007/s11123-023-00718-8" target="_blank">
+            Estimation of Industry-level Productivity with Cross-sectional Dependence by Using Spatial Analysis
+          </a>
+        </div>
+        <div class="pub-meta"><em>Journal of Productivity Analysis</em></div>
+        <div class="pub-badges"><span class="badge badge-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2023</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://scienceon.kisti.re.kr/srch/selectPORSrchArticle.do?cn=JAKO202317865305474&SITE=CLICK" target="_blank">
+            지역-산업 통합분류법에 의한 국내 기술체제 분석: 2016년 한국기업혁신조사 제조업 부문을 중심으로
+          </a>
+        </div>
+        <div class="pub-meta"><em>한국경제지리학회지</em>, 26(1), pp. 1–22</div>
+        <div class="pub-badges"><span class="badge badge-kci">KCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2022</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://preview.kstudy.com/W_files/kiss9/51501110_pv.pdf" target="_blank">
+            산업 다양성과 혁신역량에 따른 지역 발전전략의 우선순위 설정에 관한 연구
+          </a>
+        </div>
+        <div class="pub-meta"><em>한국경제지리학회지</em>, 25(3), pp. 357–379</div>
+        <div class="pub-badges"><span class="badge badge-kci">KCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2019</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://link.springer.com/article/10.1007/s10961-019-09768-3" target="_blank">
+            Identifying the Effects of Technology Transfer Policy using a Quantile Regression: The Case of South Korea
+          </a>
+        </div>
+        <div class="pub-meta"><em>Journal of Technology Transfer</em>, 45(6), pp. 1690–1717</div>
+        <div class="pub-badges"><span class="badge badge-ssci">SSCI</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2018</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://kdijep.org/v.40/4/23/" target="_blank">
+            Effects of Technology Transfer Policies on the Technical Efficiency of Korean University TTOs
+          </a>
+        </div>
+        <div class="pub-meta"><em>KDI Journal of Economic Policy</em>, 40(4), pp. 23–45</div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2016</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://www.emerald.com/insight/content/doi/10.1108/S0731-905320160000037017/full/html" target="_blank">
+            How to Measure Spillover Effects of Public Capital Stock: A Spatial Autoregressive Stochastic Frontier Model
+          </a>
+        </div>
+        <div class="pub-meta">with D. Ryu &amp; R. C. Sickles · <em>Advances in Econometrics</em>, Vol. 37, pp. 259–294</div>
+        <div class="pub-badges"><span class="badge badge-ssci">Peer-Reviewed Volume</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-year">2016</div>
+      <div class="pub-content">
+        <div class="pub-title">
+          <a href="https://www.springerprofessional.de/en/spillover-effects-of-public-capital-stock-using-spatial-frontier/6855456" target="_blank">
+            Spillover Effects of Public Capital Stock using Spatial Frontier Analyses: A First Look at the Data
+          </a>
+        </div>
+        <div class="pub-meta">with D. Ryu &amp; R. C. Sickles · <em>Productivity and Efficiency Analysis</em>, Springer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Contact</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="/cdn-cgi/l/email-protection#d0baa0b8b1be90b3bea5feb1b3febba2"><span class="__cf_email__" data-cfemail="e08a9088818ea0838e95ce8183ce8b92">[email&#160;protected]</span></a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Address</div>
+      <div class="contact-value">Department of Economics<br>Chungnam National University<br>99 Daehak-ro, Yuseong-gu<br>Daejeon 34134, Korea</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">+82-42-821-5527</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <sp
